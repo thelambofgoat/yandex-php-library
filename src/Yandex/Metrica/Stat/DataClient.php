@@ -28,6 +28,7 @@ class DataClient extends StatClient
         $resource = '';
 
         $response = $this->sendGetRequest($resource, $params->toArray());
+        dd($response);
         $dataResponse = new Models\Table($response);
         return $dataResponse;
     }
