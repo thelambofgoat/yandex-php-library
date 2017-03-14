@@ -242,6 +242,27 @@ class ByTimeData extends Model
     }
 
     /**
+     * Return timed data
+     *
+     * @return array
+     */
+    public function getTimedData()
+    {
+        $metrics = $this->getData()->getAll()[0]->getMetrics()[0];
+        $timeIntervals = $this->getTimeIntervals();
+
+        $timedData = [];
+        foreach ($metrics as $key => $m) {
+            $el = new \stdClass;
+            $el->metrics = $m;
+            $el->date = $timeIntervals[$key][0];
+            $timedData[] = $el;
+        }
+
+        return $timedData;
+    }
+
+    /**
      * Retrieve the totals property
      *
      * @return array|null
